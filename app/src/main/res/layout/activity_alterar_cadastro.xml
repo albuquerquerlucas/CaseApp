@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.luke.caseappmatricula.Activity.AlterarCadastroActivity">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/imgFotoAC"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:src="@drawable/icnewfoto"
+            android:layout_gravity="center"/>
+
+        <EditText
+            android:id="@+id/edtNomeAC"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:hint="Nome"
+            android:inputType="textEmailAddress"
+            android:imeOptions="actionNext"
+            android:background="@color/branco_transp_app"/>
+
+        <EditText
+            android:id="@+id/edtEmailAC"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:hint="E-mail"
+            android:inputType="textEmailAddress"
+            android:imeOptions="actionNext"
+            android:background="@color/branco_transp_app" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp">
+
+            <EditText
+                android:id="@+id/edtEnderecoAC"
+                android:layout_width="270dp"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:hint="Endereço"
+                android:inputType="textEmailAddress"
+                android:imeOptions="actionNext"
+                android:background="@color/branco_transp_app"/>
+
+            <EditText
+                android:id="@+id/edtNumeroAC"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:hint="Nº"
+                android:inputType="textEmailAddress"
+                android:imeOptions="actionNext"
+                android:background="@color/branco_transp_app"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp">
+
+            <EditText
+                android:id="@+id/edtTelFixoAC"
+                android:layout_width="170dp"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:hint="Tel.Fixo"
+                android:inputType="textEmailAddress"
+                android:imeOptions="actionNext"
+                android:background="@color/branco_transp_app"/>
+
+            <EditText
+                android:id="@+id/edtCelularAC"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:hint="Celular"
+                android:inputType="textEmailAddress"
+                android:imeOptions="actionDone"
+                android:background="@color/branco_transp_app"/>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnEntrarL"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="35dp"
+            android:paddingRight="35dp"
+            android:text="Atualizar"
+            android:layout_gravity="right"
+            style="@style/Widget.AppCompat.Button.Colored"/>
+    </LinearLayout>
+</RelativeLayout>

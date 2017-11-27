@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#333333</color>
+    <color name="colorPrimaryDark">#333333</color>
+    <color name="colorAccent">#333333</color>
+
+    <!-- Backup colors -->
+    <!--<color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color> -->
+
+    <color name="branco_app">#fefefe</color>
+    <color name="branco_transp_app">#ccfefefe</color>
+    <color name="azul1_app">#17adc7</color>
+    <color name="azul2_app">#6ac8d2</color>
+    <color name="preto_transp">#90000000</color>
+    <color name="amarelo_fosco">#ffbf33</color>
+</resources>

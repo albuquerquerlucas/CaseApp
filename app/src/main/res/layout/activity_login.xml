@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.luke.caseappmatricula.Activity.LoginActivity">
+
+    <LinearLayout
+        android:id="@+id/layoutLogin01"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        android:layout_above="@+id/layoutLogin02">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:text="CaseApp"
+            android:textSize="42sp"
+            android:textStyle="bold"
+            android:gravity="center"/>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="35dp"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/imgBtnFacebook"
+                android:layout_width="155dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/btnfacebook"
+                android:layout_gravity="center"
+                android:visibility="invisible"/>
+
+            <ImageView
+                android:id="@+id/imgBtnGoogle"
+                android:layout_width="155dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/btngoogle"
+                android:layout_gravity="center"
+                android:visibility="invisible"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:text="Efetue seu login"
+            android:textStyle="bold"
+            android:textColor="@color/preto_transp"/>
+
+        <EditText
+            android:id="@+id/edtEmailL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:hint="E-mail"
+            android:inputType="textEmailAddress"
+            android:imeOptions="actionNext"
+            android:drawableRight="@drawable/ic_pemail"
+            android:background="@color/branco_transp_app"/>
+
+        <EditText
+            android:id="@+id/edtSenhaL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:hint="Senha"
+            android:inputType="textPassword"
+            android:imeOptions="actionDone"
+            android:drawableRight="@drawable/ic_psenha"
+            android:background="@color/branco_transp_app"/>
+
+        <Button
+            android:id="@+id/btnEntrarL"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="35dp"
+            android:paddingRight="35dp"
+            android:text="Entrar"
+            android:layout_gravity="right"
+            style="@style/Widget.AppCompat.Button.Colored"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutLogin02"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:background="@color/preto_transp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Não possui login?"
+            android:textColor="@color/branco_app"/>
+
+        <TextView
+            android:id="@+id/txtLinkCadastro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="Cadastre-se!"
+            android:textStyle="bold"
+            android:textColor="@color/amarelo_fosco"/>
+    </LinearLayout>
+</RelativeLayout>

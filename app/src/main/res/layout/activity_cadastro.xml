@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.luke.caseappmatricula.Activity.CadastroActivity">
+
+    <LinearLayout
+        android:id="@+id/layoutLogin01"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        android:layout_above="@+id/layoutLogin02">
+
+        <ImageView
+            android:id="@+id/imgNewFotoC"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:src="@drawable/icnewfoto"
+            android:layout_gravity="center" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/edtNomeC"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:hint="Nome"
+            android:inputType="textEmailAddress"
+            android:imeOptions="actionNext"
+            android:drawableRight="@drawable/ic_plogin"
+            android:background="@color/branco_transp_app"/>
+
+        <EditText
+            android:id="@+id/edtEmailC"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:hint="E-mail"
+            android:inputType="textEmailAddress"
+            android:imeOptions="actionNext"
+            android:drawableRight="@drawable/ic_pemail"
+            android:background="@color/branco_transp_app"/>
+
+        <EditText
+            android:id="@+id/edtSenhaC"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:hint="Senha"
+            android:inputType="textPassword"
+            android:imeOptions="actionDone"
+            android:drawableRight="@drawable/ic_psenha"
+            android:background="@color/branco_transp_app"/>
+
+        <Button
+            android:id="@+id/btnCadastrarC"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="35dp"
+            android:paddingRight="35dp"
+            android:text="Cadastrar"
+            android:layout_gravity="right"
+            style="@style/Widget.AppCompat.Button.Colored"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutLogin02"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:background="@color/preto_transp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Já possui login?"
+            android:textColor="@color/branco_app"/>
+
+        <TextView
+            android:id="@+id/txtLinkLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="Entrar!"
+            android:textStyle="bold"
+            android:textColor="@color/amarelo_fosco"/>
+    </LinearLayout>
+</RelativeLayout>
