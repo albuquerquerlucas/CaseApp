@@ -19,4 +19,8 @@ public class Mensagens {
     public static String ERRO_TENTE_NOVAMENTE = "Ocorreu um erro. tente novamente mais tarde.";
     public static String USUARIO_OU_SENHA_INVALIDOS = "Usuário ou senha inválidos.";
     public static String SERVICO_TEMPORARIAMENTE_INDISPONIVEL = "Serviço temporariamente indisponível.";
+    public static String FALHA_UPLOAD = "Falha ao fazer upload.";
+    public static String SELECIONE_FOTO = "Selecione uma foto!";
+    public static String FAZENDO_UPLOAD_AGUARDE = "Fazendo upload e salvando seus dados, aguarde...";
+    public static String CARREGANDO = "Carregando...";
 }
