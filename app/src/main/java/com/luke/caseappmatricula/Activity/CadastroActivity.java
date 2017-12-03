@@ -55,9 +55,7 @@ public class CadastroActivity extends Activity implements View.OnClickListener {
     private Button btnCadastrarC;
     private TextView txtLinkLogin;
     private FirebaseAuth auth;
-    private FirebaseUser user;
     private DatabaseReference dbCadastroUsuario;
-    private FirebaseStorage firebaseStorage;
     private StorageReference storage;
 
     @Override
@@ -66,8 +64,7 @@ public class CadastroActivity extends Activity implements View.OnClickListener {
         setContentView(R.layout.activity_cadastro);
 
         auth = ConfigFirebase.getFirebaseNAuth();
-        //firebaseStorage = FirebaseStorage.getInstance();
-        //storage = firebaseStorage.getReference();
+        storage = ConfigFirebase.getFirebaseRefStorage();
     }
 
     @Override
@@ -93,9 +90,13 @@ public class CadastroActivity extends Activity implements View.OnClickListener {
         String senha = edtSenhaC.getText().toString();
 
         if(!nome.equals("") && !email.equals("") && !senha.equals("")){
-            cadastrarUsuario(nome, email, senha);
+            if(caminhoFoto != null){
+                cadastrarUsuario(nome, email, senha);
+            }else{
+                Toast.makeText(getApplicationContext(), Mensagens.SELECIONE_FOTO, Toast.LENGTH_SHORT).show();
+            }
         }else{
-            Toast.makeText(getApplicationContext(), "Preencha todos os campos.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), Mensagens.CAMPOS_VAZIOS, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -118,7 +119,7 @@ public class CadastroActivity extends Activity implements View.OnClickListener {
         Intent it = new Intent();
         it.setType("image/*");
         it.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(it, "Selecione uma imagem"), IMAGE_REQUEST);
+        startActivityForResult(Intent.createChooser(it, Mensagens.SELECIONE_FOTO), IMAGE_REQUEST);
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -136,20 +137,45 @@ public class CadastroActivity extends Activity implements View.OnClickListener {
     }
 
     private void cadastrarUsuario(final String nome, final String email, final String senha){
+
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setTitle(Mensagens.FAZENDO_UPLOAD_AGUARDE);
+
         auth.createUserWithEmailAndPassword(email, senha)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
+                            final String id = task.getResult().getUser().getUid();
 
-                            String id = task.getResult().getUser().getUid();
-                            urlFoto = "";
-                            List<String> listaIdCursos = new ArrayList<>();
-                            Aluno aluno = new Aluno(id, nome, email, senha,"","","","", urlFoto, listaIdCursos);
-                            dbCadastroUsuario = ConfigFirebase.getFirebaseRef(RotasFirebase.DB_REFERENCE_ALUNOS);
-                            dbCadastroUsuario.child(id).setValue(aluno);
-                            Toast.makeText(CadastroActivity.this, Mensagens.CADASTRO_SUCESSO, Toast.LENGTH_SHORT).show();
-                            returnToLogin();
+                            progressDialog.show();
+                            StorageReference ref = storage.child("imagens/" + System.currentTimeMillis() + "." + caminhoFoto.getLastPathSegment());
+                            ref.putFile(caminhoFoto).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                @Override
+                                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                    progressDialog.dismiss();
+                                    urlFoto = taskSnapshot.getDownloadUrl().toString();
+                                    imgNewFotoC.setImageDrawable(getResources().getDrawable(R.drawable.icnewfoto));
+                                    List<String> listaIdCursos = new ArrayList<>();
+                                    Aluno aluno = new Aluno(id, nome, email, senha,"","","","", urlFoto, listaIdCursos);
+                                    dbCadastroUsuario = ConfigFirebase.getFirebaseRef(RotasFirebase.DB_REFERENCE_ALUNOS);
+                                    dbCadastroUsuario.child(id).setValue(aluno);
+                                    returnToLogin();
+                                    Toast.makeText(CadastroActivity.this, Mensagens.CADASTRO_SUCESSO, Toast.LENGTH_SHORT).show();
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    progressDialog.dismiss();
+                                    Toast.makeText(CadastroActivity.this, Mensagens.FALHA_UPLOAD, Toast.LENGTH_SHORT).show();
+                                }
+                            }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                                @Override
+                                public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                                    double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
+                                    progressDialog.setMessage(Mensagens.CARREGANDO + (int) progress + "%");
+                                }
+                            });
                         }else{
                             String erroExcecao = "";
                             try {
