@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="5dp"
-            android:text="Efetue sua Matrícula"
+            android:text="Meus cursos"
             android:textStyle="bold"
             android:textColor="@color/branco_app"
             android:background="@color/colorAccent"/>

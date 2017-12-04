@@ -1,5 +1,6 @@
 package com.luke.caseappmatricula.Activity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -37,6 +38,7 @@ public class MeusCursosActivity extends AppCompatActivity {
     private DatabaseReference dbAlunos, dbCursos;
     private String itemSelecionado;
     private List<String> listaCursosAlunos, listaR;
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +55,10 @@ public class MeusCursosActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setTitle("Consultando seus cursos, aguarde...");
+        progressDialog.show();
+
         listaMeusCursos = findViewById(R.id.listaMeusCursos);
 
         Query query = dbAlunos.orderByKey().equalTo(user.getUid());
@@ -65,8 +71,6 @@ public class MeusCursosActivity extends AppCompatActivity {
                             trazCursosMatriculados(data);
                         }
                     }
-                }else{
-                    Toast.makeText(MeusCursosActivity.this, "Não tem cursos", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -83,27 +87,33 @@ public class MeusCursosActivity extends AppCompatActivity {
         cursos = new ArrayList<>();
         List<String> idCursosLista = a.getCursos();
 
-        for(int i = 0; i < idCursosLista.size(); i++){
-            Query query = dbCursos.orderByKey().equalTo(idCursosLista.get(i));
-            query.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    //cursos.clear();
-                    if(dataSnapshot.exists()){
-                        for(DataSnapshot dat : dataSnapshot.getChildren()){
-                            Curso c = dat.getValue(Curso.class);
-                            cursos.add(c);
+        if(a.getCursos() != null){
+            for(int i = 0; i < idCursosLista.size(); i++){
+                Query query = dbCursos.orderByKey().equalTo(idCursosLista.get(i));
+                query.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        //cursos.clear();
+                        if(dataSnapshot.exists()){
+                            for(DataSnapshot dat : dataSnapshot.getChildren()){
+                                Curso c = dat.getValue(Curso.class);
+                                cursos.add(c);
+                            }
+                            cursoAdapter = new CursoAdapter(MeusCursosActivity.this, R.layout.item_curso_lista, cursos);
+                            listaMeusCursos.setAdapter(cursoAdapter);
+                            progressDialog.dismiss();
                         }
-                        cursoAdapter = new CursoAdapter(MeusCursosActivity.this, R.layout.item_curso_lista, cursos);
-                        listaMeusCursos.setAdapter(cursoAdapter);
                     }
-                }
 
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
 
-                }
-            });
+                    }
+                });
+            }
+        }else{
+            progressDialog.dismiss();
+            //Toast.makeText(MeusCursosActivity.this, "Você não está matriculado em nenhum curso.", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -117,6 +127,7 @@ public class MeusCursosActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        finish();
         goToMenuPrincipal();
     }
 }

@@ -36,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/btnfacebook"
                 android:layout_gravity="center"
-                android:visibility="invisible"/>
+                />
 
             <ImageView
                 android:id="@+id/imgBtnGoogle"
@@ -45,7 +45,7 @@
                 android:layout_marginLeft="10dp"
                 android:src="@drawable/btngoogle"
                 android:layout_gravity="center"
-                android:visibility="invisible"/>
+                />
         </LinearLayout>
 
         <TextView

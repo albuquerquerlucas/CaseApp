@@ -16,8 +16,8 @@
 
         <ImageView
             android:id="@+id/imgFotoMC"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
             android:src="@drawable/icnewfoto"
             android:layout_gravity="center"/>
 
@@ -182,20 +182,6 @@
             android:layout_gravity="right"
             style="@style/Widget.AppCompat.Button.Colored"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="5dp"
-            android:text="Meus Cursos"
-            android:textStyle="bold"
-            android:textColor="@color/branco_app"
-            android:background="@color/colorAccent"/>
 
-        <ListView
-            android:id="@+id/meusCursosList"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-        </ListView>
     </LinearLayout>
 </RelativeLayout>

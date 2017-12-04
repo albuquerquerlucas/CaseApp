@@ -1,6 +1,7 @@
 package com.luke.caseappmatricula.Activity;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -25,6 +26,7 @@ import com.luke.caseappmatricula.Adapter.CursoAdapter;
 import com.luke.caseappmatricula.Entity.Curso;
 import com.luke.caseappmatricula.R;
 import com.luke.caseappmatricula.Util.ConfigFirebase;
+import com.luke.caseappmatricula.Util.Mensagens;
 import com.luke.caseappmatricula.Util.RotasFirebase;
 
 import java.util.ArrayList;
@@ -57,6 +59,10 @@ public class CursosActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setTitle("Checando os cursos disponíveis, aguarde...");
+        progressDialog.show();
+
         cursosLista = findViewById(R.id.cursosLista);
         cursos = new ArrayList<>();
 
@@ -71,6 +77,7 @@ public class CursosActivity extends AppCompatActivity {
                 }
                 cursoAdapter = new CursoAdapter(CursosActivity.this, R.layout.item_curso_lista, cursos);
                 cursosLista.setAdapter(cursoAdapter);
+                progressDialog.dismiss();
             }
 
             @Override

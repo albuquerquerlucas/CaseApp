@@ -41,7 +41,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.MeusCursosActivity"
-            android:label="Matrícula"
+            android:label="Minha grade"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.CursosActivity"

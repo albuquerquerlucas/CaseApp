@@ -68,11 +68,11 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
 
     private void selecaoMenu(int opcao){
         if(opcao == 1){
-            Intent goMeuCadastro = new Intent(getApplicationContext(), MeuCadastroActivity.class);
+            Intent goMeuCadastro = new Intent(MenuActivity.this, MeuCadastroActivity.class);
             startActivity(goMeuCadastro);
             finish();
         }else if(opcao == 2){
-            Intent goMatricula = new Intent(getApplicationContext(), MeusCursosActivity.class);
+            Intent goMatricula = new Intent(MenuActivity.this, MeusCursosActivity.class);
             startActivity(goMatricula);
             finish();
         }else if(opcao == 3){
